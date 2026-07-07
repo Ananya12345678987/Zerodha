@@ -1,4 +1,3 @@
-# Zerodha
 # Zerodha Clone
 
 A full-stack clone of Zerodha's trading platform, built to practice real-world
