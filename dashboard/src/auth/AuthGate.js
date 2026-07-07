@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-const FRONTEND_LOGIN_URL = "http://localhost:3000/login";
-const BACKEND_URL = "http://localhost:3002";
+const FRONTEND_LOGIN_URL = process.env.REACT_APP_FRONTEND_URL
+  ? `${process.env.REACT_APP_FRONTEND_URL}/login`
+  : "http://localhost:3000/login";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3002";
 
 const AuthGate = ({ children }) => {
   const [status, setStatus] = useState("checking"); // checking | ok | fail
@@ -13,7 +15,6 @@ const AuthGate = ({ children }) => {
 
       if (urlToken) {
         localStorage.setItem("token", urlToken);
-        // clean the token out of the visible URL
         window.history.replaceState({}, document.title, window.location.pathname);
       }
 
